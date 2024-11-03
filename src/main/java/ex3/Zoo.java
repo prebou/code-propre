@@ -1,49 +1,64 @@
 package ex3;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * la classe Zoo permet de stocker les animaux dans la liste
+ * */
 public class Zoo {
+    private String nom;
+    private List<String> types;
+    private List<String> noms;
+    private List<String> comportements;
+    private List<Animal> animaux = new ArrayList<>();
 
-	private String nom;
-	private SavaneAfricaine savaneAfricaine;
-	private ZoneCarnivore zoneCarnivore;
-	private FermeReptile fermeReptile;
-	private Aquarium aquarium;
-	
-	public Zoo(String nom){
-		this.nom = nom;
-	}
-	
-	public void addAnimal(String nomAnimal, String typeAnimal, String comportement){
-		if (typeAnimal.equals("MAMMIFERE") && comportement.equals("CARNIVORE")){
-			zoneCarnivore.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("MAMMIFERE") && comportement.equals("HERBIVORE")){
-			savaneAfricaine.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("REPTILE")){
-			fermeReptile.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("POISSON")){
-			aquarium.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-	}
-	
-	public void afficherListeAnimaux(){
-		savaneAfricaine.afficherListeAnimaux();
-		zoneCarnivore.afficherListeAnimaux();
-		fermeReptile.afficherListeAnimaux();
-		aquarium.afficherListeAnimaux();
-	}
+    public Zoo(String nom) {
+        this.nom = nom;
+    }
 
-	/** Getter for nom
-	 * @return the nom
-	 */
-	public String getNom() {
-		return nom;
-	}
+    @Deprecated
+    public void addAnimal(String nomAnimal, String typeAnimal, String comportement) {
+        types.add(typeAnimal);
+        noms.add(nomAnimal);
+        comportements.add(comportement);
+    }
+    /**
+     * methode permet d'ajouter un animal dans la liste animeaux
+     * */
+    public void addAnimal(Animal animal) {
+        animaux.add(animal);
+    }
 
-	/** Setter
-	 * @param nom the nom to set
-	 */
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    /**
+     * methode pour afficher la liste d'animaux en String */
+    public void afficherListeAnimaux() {
+        for (int i = 0; i < animaux.size(); i++) {
+            System.out.println(animaux.get(i).toString());
+        }
+    }
+
+    /**
+     * Getter
+     *
+     * @return animaux
+     */
+    public List<Animal> getAnimaux() {
+        return animaux;
+    }
+
+    /**
+     * Getter for nom     * @return the nom
+     */
+    public String getNom() {
+        return nom;
+    }
+
+    /**
+     * Setter     * @param nom the nom to set
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }
